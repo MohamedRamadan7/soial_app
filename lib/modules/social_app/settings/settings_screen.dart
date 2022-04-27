@@ -1,0 +1,185 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/layout/social_app/cubit/cubit.dart';
+import 'package:untitled/layout/social_app/cubit/states.dart';
+import 'package:untitled/shared/components/components.dart';
+
+class SettingsScreen extends StatelessWidget {
+  var emailController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    var userModel = SocialCubit.get(context).model;
+    return BlocConsumer<SocialCubit,SocialStates>(
+      listener: (context, state){},
+      builder: (context, state){
+        return  Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Container(
+                height: 190,
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional.topCenter,
+                      child: Container(
+                        height: 140,
+                        width: double.infinity,
+                        decoration:BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(4.0),
+                              topLeft:  Radius.circular(4.0),
+                            ),
+                            image: DecorationImage(
+                                image:NetworkImage(
+                                  'https://img.freepik.com/free-photo/impressed-young-man-points-away-shows-direction-somewhere-gasps-from-wonderment_273609-27041.jpg?w=826',
+                                ),
+                                fit: BoxFit.cover
+                            )
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(
+                      radius: 64.0,
+                      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                      child: CircleAvatar(
+                        radius: 60.0,
+                        backgroundImage: NetworkImage(
+                            'https://img.freepik.com/free-photo/waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg?t=st=1650633184~exp=1650633784~hmac=f1c4b3dcbd9c56a2a15c3c804b4d3417b3f24c7b91703e2bc86b327f20ab2a76&w=740'),
+
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                '${userModel?.name}',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                'bio...',
+                style: Theme.of(context).textTheme.caption,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: InkWell(
+                        child: Column(
+                          children: [
+                            Text(
+                              '100',
+                              style: Theme.of(context).textTheme.subtitle2,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Posts',
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                          ],
+                        ),
+                        onTap: (){},
+                      ),
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        child: Column(
+                          children: [
+                            Text(
+                              '220',
+                              style: Theme.of(context).textTheme.subtitle2,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Photos',
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                          ],
+                        ),
+                        onTap: (){},
+                      ),
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        child: Column(
+                          children: [
+                            Text(
+                              '10k',
+                              style: Theme.of(context).textTheme.subtitle2,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Followers',
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                          ],
+                        ),
+                        onTap: (){},
+                      ),
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        child: Column(
+                          children: [
+                            Text(
+                              '150',
+                              style: Theme.of(context).textTheme.subtitle2,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Following',
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                          ],
+                        ),
+                        onTap: (){},
+                      ),
+                    ),
+
+
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: (){},
+                        child: Text('Add Photo'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  OutlinedButton(
+                    onPressed: (){},
+                    child: Icon(
+                      Icons.edit_outlined,
+                      size: 18.0,),
+                  ),
+                ],
+              ),
+
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
