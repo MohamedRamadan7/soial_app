@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/layout/social_app/cubit/cubit.dart';
 import 'package:untitled/layout/social_app/cubit/states.dart';
+import 'package:untitled/modules/social_app/edit_ptofile/edit_profile_screen.dart';
 import 'package:untitled/shared/components/components.dart';
 
 class SettingsScreen extends StatelessWidget {
   var emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var userModel = SocialCubit.get(context).model;
+    var userModel = SocialCubit.get(context).userModel;
     return BlocConsumer<SocialCubit,SocialStates>(
       listener: (context, state){},
       builder: (context, state){
@@ -33,7 +34,7 @@ class SettingsScreen extends StatelessWidget {
                             ),
                             image: DecorationImage(
                                 image:NetworkImage(
-                                  'https://img.freepik.com/free-photo/impressed-young-man-points-away-shows-direction-somewhere-gasps-from-wonderment_273609-27041.jpg?w=826',
+                                  '${userModel!.cover}',
                                 ),
                                 fit: BoxFit.cover
                             )
@@ -46,7 +47,7 @@ class SettingsScreen extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 60.0,
                         backgroundImage: NetworkImage(
-                            'https://img.freepik.com/free-photo/waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg?t=st=1650633184~exp=1650633784~hmac=f1c4b3dcbd9c56a2a15c3c804b4d3417b3f24c7b91703e2bc86b327f20ab2a76&w=740'),
+                            '${userModel.image}'),
 
                       ),
                     ),
@@ -57,14 +58,14 @@ class SettingsScreen extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                '${userModel?.name}',
+                '${userModel.name}',
                 style: Theme.of(context).textTheme.bodyText1,
               ),
               SizedBox(
                 height: 5,
               ),
               Text(
-                'bio...',
+                '${userModel.bio}',
                 style: Theme.of(context).textTheme.caption,
               ),
               Padding(
@@ -168,7 +169,10 @@ class SettingsScreen extends StatelessWidget {
                     width: 5,
                   ),
                   OutlinedButton(
-                    onPressed: (){},
+                    onPressed: ()
+                    {
+                      navigateTo(context, EditProfileScreen());
+                    },
                     child: Icon(
                       Icons.edit_outlined,
                       size: 18.0,),

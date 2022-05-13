@@ -11,16 +11,16 @@ import 'package:untitled/modules/social_app/notificatians/notifications_screen.d
 import 'package:untitled/modules/social_app/settings/settings_screen.dart';
 import 'package:untitled/modules/social_app/users/users_screen.dart';
 import 'package:untitled/shared/components/constants.dart';
-
+//
 class SocialCubit extends Cubit<SocialStates> {
   SocialCubit() : super(SocialInitialState());
   static SocialCubit get(context) => BlocProvider.of(context);
-  SocialUserModel? model;
+  SocialUserModel? userModel;
   void getUserData() {
     emit(SocialGetUserLoadingState());
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
-      model = SocialUserModel.fromJson(value.data()!);
-      print('data is :$model');
+      userModel = SocialUserModel.fromJson(value.data()!);
+      print('data is :$userModel');
       emit(SocialGetUserSuccessState());
     }).catchError((error) {
       print(error.toString());
