@@ -71,7 +71,7 @@ class SocialLayout extends StatelessWidget {
                   icon: Icon(
                     Icons.settings,
                   ),
-                  label: 'settings'
+                  label: 'Settings'
               ),
             ],
 
